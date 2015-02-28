@@ -6,23 +6,48 @@
 package de.iteratec.raspberrylight.core.enums;
 
 /**
- *
  * @author Michael Haas <Michael.Haas@iteratec.de>
  */
 public class Color {
-    public static final Color BLACK = new Color(0x000000);
-    public static final Color RED = new Color(0xFF0000);
-    public static final Color GREEN = new Color(0x00FF00);
-    public static final Color BLUE = new Color(0x0000FF);
-    public static final Color WHITE = new Color(0xFFFFFF);
-    
-    private final int value;
-    
-    public Color(final int value){
-        this.value = value;
+
+  private static final int DEFAULT_MIN_VALUE = 0;
+  private static final int DEFAULT_MAX_VALUE = 255;
+
+  private final int[] rgbValues;
+
+  private final int minValue;
+  private final int maxValue;
+
+  public Color(final int[] rgbValues) {
+    this(rgbValues, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE);
+  }
+
+  public Color(final int[] rgbValues, final int minValue, final int maxValue) {
+    if (rgbValues == null || rgbValues.length != 3) {
+      throw new IllegalArgumentException("rgb values must contain three components.");
     }
-    
-    int getValue(){
-        return value;
-    }
+    this.rgbValues = rgbValues;
+    this.minValue = minValue;
+    this.maxValue = maxValue;
+  }
+
+  public int getMinValue() {
+    return minValue;
+  }
+
+  public int getMaxValue() {
+    return maxValue;
+  }
+
+  public int getRed() {
+    return rgbValues[0];
+  }
+
+  public int getGreen() {
+    return rgbValues[1];
+  }
+
+  public int getBlue() {
+    return rgbValues[2];
+  }
 }
