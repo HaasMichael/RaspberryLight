@@ -10,7 +10,7 @@ import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.RaspiPin;
 import de.iteratec.raspberrylight.core.enums.Brightness;
-import de.iteratec.raspberrylight.core.enums.Color;
+import de.iteratec.raspberrylight.core.Color;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.stereotype.Component;
 

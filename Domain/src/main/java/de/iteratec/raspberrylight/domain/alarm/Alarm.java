@@ -5,7 +5,7 @@
  */
 package de.iteratec.raspberrylight.domain.alarm;
 
-import de.iteratec.raspberrylight.core.enums.Color;
+import de.iteratec.raspberrylight.core.Color;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

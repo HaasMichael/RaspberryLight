@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.iteratec.raspberrylight.core.enums;
+package de.iteratec.raspberrylight.core;
 
 /**
  * @author Michael Haas <Michael.Haas@iteratec.de>
