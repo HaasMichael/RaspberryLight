@@ -2,7 +2,7 @@ import org.gradle.api.artifacts.*
 
 apply plugin: 'base' // To add "clean" task to the root project.
 
-String raspberryIp = '192.168.240.151'
+String raspberryIp = '192.168.240.175'
 
 subprojects {
     apply from: rootProject.file('common.gradle')
@@ -62,15 +62,23 @@ task wrapper(type: Wrapper, description: 'Creates and deploys the Gradle wrapper
 
 project(':Core'){}
 
+project(':Data'){
+    dependencies{
+        compile project(':Core')
+    }
+}
+
 project(':Domain'){
     dependencies{
         compile project(':Core')
+        compile project(':Data')
     }
 }
 
 project(':Service'){
     dependencies{
         compile project(':Core')
+        compile project(':Data')
         compile project(':Domain')
     }
 }
