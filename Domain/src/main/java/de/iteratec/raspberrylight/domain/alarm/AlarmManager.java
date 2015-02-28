@@ -6,6 +6,7 @@
 package de.iteratec.raspberrylight.domain.alarm;
 
 import com.google.gson.Gson;
+import de.iteratec.raspberrylight.core.Color;
 
 import java.util.*;
 
@@ -29,15 +30,15 @@ public class AlarmManager {
   private void createDefaultAlarms() {
     Calendar cal1 = new GregorianCalendar();
     cal1.set(2014, 2, 28, 15, 0, 0);
-    alarms.add(new Alarm("Wake me up", cal1.getTime()));
+    alarms.add(new Alarm("Wake me up", cal1.getTime(), new Color(new int[]{255, 0, 0}), 20000));
   }
 
   public Collection<Alarm> getAlarms() {
     return alarms;
   }
 
-  public void addAlarm(String name, Date start) {
-    Alarm alarm = new Alarm(name, start);
+  public void addAlarm(String name, Date start, Color color, int fadeInDuration) {
+    Alarm alarm = new Alarm(name, start, color, fadeInDuration);
     alarms.add(alarm);
   }
 
@@ -48,7 +49,8 @@ public class AlarmManager {
   public void updateAlarm(Alarm alarm) {
     Alarm toUpdate = getAlarm(alarm.getName());
     toUpdate.setStart(alarm.getStart());
-
+    toUpdate.setColor(alarm.getColor());
+    toUpdate.setFadeInDuration(alarm.getFadeInDuration());
     // TODO update sound file.
   }
 
