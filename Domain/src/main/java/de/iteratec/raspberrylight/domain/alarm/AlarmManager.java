@@ -6,48 +6,65 @@
 package de.iteratec.raspberrylight.domain.alarm;
 
 import com.google.gson.Gson;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+
+import java.util.*;
 
 /**
- *
  * @author developer
  */
 public class AlarmManager {
-    
-    private Gson gson = new Gson();
-    
-    private List<Alarm> alarms = new ArrayList<>();
-    
-    public AlarmManager() {
-       createDefaultAlarms();
-    }
-    
-    private void createDefaultAlarms() {
-        Calendar cal1 = new GregorianCalendar();
-        cal1.set(2014, 2, 28, 15, 0, 0);
-        alarms.add(new Alarm("Wake me up", cal1.getTime()));
-    }
-    
-    public String getAlarms() {
-        return gson.toJson(alarms);
-    }
-    
-    public void addAlarm(String name, Date start) {
-        Alarm alarm = new Alarm(name, start);
-        alarms.add(alarm);
-    }
-    
-    public void updateAlarm(Alarm alarm) {
-        
-    }
-    
-    public void deleteAlarm(Alarm alarm) {
-        
+
+  private Gson gson;
+
+  private Collection<Alarm> alarms;
+
+  public AlarmManager() {
+    gson = new Gson();
+    alarms = new LinkedList<>();
+
+    // For testing purposes
+    createDefaultAlarms();
+  }
+
+  private void createDefaultAlarms() {
+    Calendar cal1 = new GregorianCalendar();
+    cal1.set(2014, 2, 28, 15, 0, 0);
+    alarms.add(new Alarm("Wake me up", cal1.getTime()));
+  }
+
+  public Collection<Alarm> getAlarms() {
+    return alarms;
+  }
+
+  public void addAlarm(String name, Date start) {
+    Alarm alarm = new Alarm(name, start);
+    alarms.add(alarm);
+  }
+
+  public void addAlarm(Alarm alarm) {
+    alarms.add(alarm);
+  }
+
+  public void updateAlarm(Alarm alarm) {
+    Alarm toUpdate = getAlarm(alarm.getName());
+    toUpdate.setStart(alarm.getStart());
+
+    // TODO update sound file.
+  }
+
+  public void deleteAlarm(Alarm alarm) {
+    Alarm toRemove = getAlarm(alarm.getName());
+    alarms.remove(toRemove);
+  }
+
+  public Alarm getAlarm(String name) {
+    for (Alarm alarm : alarms) {
+      if (name.equalsIgnoreCase(alarm.getName())) {
+        return alarm;
+      }
     }
 
-    
+    return null;
+  }
+
 }
