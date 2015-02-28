@@ -1,0 +1,6 @@
+rootProject.name='RaspberryLight'
+
+include('Core')
+include('Data')
+include('Domain')
+include('Service')
