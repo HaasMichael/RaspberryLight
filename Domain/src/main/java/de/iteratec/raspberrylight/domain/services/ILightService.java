@@ -14,6 +14,12 @@ import de.iteratec.raspberrylight.core.enums.Color;
  */
 public interface ILightService {
     
+    void turnOn();
+    
+    void turnOff();
+    
+    void wakeUp();
+    
     void setColor(final Color color);
     
     void setBrightness(final Brightness brightness);
