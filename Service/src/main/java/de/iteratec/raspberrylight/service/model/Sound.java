@@ -5,6 +5,14 @@ public class Sound {
     private String name;
     private String fileName;
 
+    public Sound() {
+    }
+
+    public Sound(String name, String fileName) {
+        this.name = name;
+        this.fileName = fileName;
+    }
+
     public String getName() {
         return name;
     }
