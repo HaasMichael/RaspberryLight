@@ -5,29 +5,44 @@
  */
 package de.iteratec.raspberrylight.service.controller;
 
-import de.iteratec.raspberrylight.core.enums.Brightness;
-import de.iteratec.raspberrylight.domain.services.ILightService;
-import org.springframework.beans.factory.annotation.Autowired;
+import de.iteratec.raspberrylight.domain.alarm.AlarmManager;
+import de.iteratec.raspberrylight.domain.light.PiCommunication;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Michael Haas <Michael.Haas@iteratec.de>
+ * @author developer
  */
 @RestController
 public class LightController {
+        
+    private PiCommunication piCommunication = new PiCommunication();
+    private AlarmManager alarmManager = new AlarmManager();
     
-    @Autowired
-    private ILightService lightService;
+    private boolean lightOn = false;
     
-    @RequestMapping("/lightsOn")
-    public void switchOn(){
-        lightService.setBrightness(Brightness.SHINY);
+    @RequestMapping("/toggle")
+    public void toggle() {
+        if (lightOn) {
+            piCommunication.turnLightOn();
+        } else {
+            piCommunication.turnLightOff();
+        }
+        lightOn = !lightOn;
     }
     
-    @RequestMapping("/lightsOff")
-    public void switchOff(){
-        lightService.setBrightness(Brightness.DARK);
+    @RequestMapping(value="/pulse")
+    public void pulse(@RequestParam int pwmValue, @RequestParam int pwmRange) {
+        piCommunication.pulse(pwmValue, pwmRange);
+    }
+    
+    @RequestMapping(value="/alarms", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public String getAlarms() {
+        return alarmManager.getAlarms();
     }
 }
