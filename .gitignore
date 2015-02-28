@@ -2,10 +2,11 @@
  
 ### Java ###
 *.class
-*build/
+**/build/
  
 # Gradle #
 .nb-gradle
+.gradle/
 
 # Package Files #
 *.jar
