@@ -1,4 +1,4 @@
-package de.iteratec.raspberrylight.service.model;
+package de.iteratec.raspberrylight.domain.alarm;
 
 import org.springframework.hateoas.ResourceSupport;
 

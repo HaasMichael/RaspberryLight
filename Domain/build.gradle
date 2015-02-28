@@ -1,4 +1,5 @@
 dependencies{
     compile group: 'com.pi4j', name: 'pi4j-core', version:'0.0.5'
+    compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '0.16.0.RELEASE'
     compile 'com.google.code.gson:gson:2.2.4'
 }

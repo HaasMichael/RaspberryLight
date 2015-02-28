@@ -1,6 +1,6 @@
 package de.iteratec.raspberrylight.service.controller;
 
-import de.iteratec.raspberrylight.service.model.Sound;
+import de.iteratec.raspberrylight.domain.alarm.Sound;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
