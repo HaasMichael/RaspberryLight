@@ -43,6 +43,6 @@ public class LightController {
     @RequestMapping(value="/alarms", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public String getAlarms() {
-        return alarmManager.getAlarms();
+        return "";//alarmManager.getAlarms();
     }
 }
