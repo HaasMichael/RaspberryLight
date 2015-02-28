@@ -5,6 +5,8 @@
  */
 package de.iteratec.raspberrylight.domain.alarm;
 
+import de.iteratec.raspberrylight.core.Color;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,6 +23,7 @@ public class Alarm {
     private String name;
     private Date start;
     private String soundfile;
+    private Color color;
     
     public Alarm(String name, Date start) {
         this.name = name;

@@ -6,7 +6,7 @@
 package de.iteratec.raspberrylight.domain.services;
 
 import de.iteratec.raspberrylight.core.enums.Brightness;
-import de.iteratec.raspberrylight.core.enums.Color;
+import de.iteratec.raspberrylight.core.Color;
 
 /**
  *
