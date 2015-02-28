@@ -10,6 +10,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/sound")
 public class SoundController {
@@ -25,12 +28,18 @@ public class SoundController {
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public Collection<Sound> getSounds() {
-        return sounds.values();
+        Collection<Sound> result = sounds.values();
+        for (Sound sound : result) {
+            sound.add(linkTo(methodOn(SoundController.class).getSound(sound.getName())).withSelfRel());
+        }
+        return result;
     }
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = "application/json")
-    public Sound getSounds(@PathVariable String name) {
-        return sounds.get(name);
+    public Sound getSound(@PathVariable String name) {
+        Sound sound = sounds.get(name);
+        sound.add(linkTo(methodOn(SoundController.class).getSound(name)).withSelfRel());
+        return sound;
     }
 
     @RequestMapping(method = { RequestMethod.POST, RequestMethod.PUT }, consumes = "application/json")

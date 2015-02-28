@@ -1,6 +1,8 @@
 package de.iteratec.raspberrylight.service.model;
 
-public class Sound {
+import org.springframework.hateoas.ResourceSupport;
+
+public class Sound extends ResourceSupport {
 
     private String name;
     private String fileName;
